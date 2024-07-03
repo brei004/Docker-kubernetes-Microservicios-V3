@@ -1,0 +1,10 @@
+#Usar la imagen base de OpenJDK
+FROM openjdk:17
+
+WORKDIR /app
+
+COPY /src/main/java/org/example /app
+
+RUN javac GameService.java MapService.java PlayerService.java TowerService.java WaveService.java
+
+CMD ["java","org.example.WaveService"]

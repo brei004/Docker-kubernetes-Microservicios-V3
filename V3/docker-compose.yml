@@ -1,0 +1,61 @@
+services:
+  game:
+    build:
+      context: .
+      dockerfile: Dockerfile.GameService
+    networks:
+      - game-network
+    volumes:
+      - game-data:/app/data
+
+  map:
+    build:
+      context: .
+      dockerfile: Dockerfile.MapService
+    networks:
+      - game-network
+
+  player:
+    build:
+      context: .
+      dockerfile: Dockerfile.PlayerService
+    networks:
+      - game-network
+
+  tower:
+    build:
+      context: .
+      dockerfile: Dockerfile.TowerService
+    networks:
+      - game-network
+
+  wave:
+    build:
+      context: .
+      dockerfile: Dockerfile.WaveService
+    networks:
+      - game-network
+
+  log:
+    build:
+      context: .
+      dockerfile: Dockerfile.LogService
+
+    networks:
+      - game-network
+
+  auth:
+    build:
+      context: .
+      dockerfile: Dockerfile.AuthService
+
+    networks:
+      - game-network
+
+networks:
+  game-network:
+    driver: bridge
+
+volumes:
+  game-data:
+    driver: local
